@@ -4,6 +4,7 @@ import src.model.ContaBancaria;
 import src.model.ContaCorrente;
 import src.model.ContaPoupanca;
 
+import src.utils.DataUtil;
 public class App {
     public static void main(String[] args) {
         System.out.println("Criando Banco Digital!");
@@ -26,5 +27,22 @@ public class App {
 
         System.out.println("Saldo atual: " + conta.getSaldo());
         System.out.println();
+
+        System.out.println(conta2.getDataAbertura());
+
+        /*DataUtil util = new DataUtil();
+        var f1 = util.converterDateParaDataEHora(conta2.getDataAbertura());
+        var f2 = util.converterDateParaData(conta2.getDataAbertura());
+        var f3 = util.converterHora(conta2.getDataAbertura());
+        System.out.println(f1);
+        System.out.println(f2);
+        System.out.println(f3);*/
+
+        var f1 = DataUtil.converterDateParaDataEHora(conta2.getDataAbertura());
+        var f2 = DataUtil.converterDateParaData(conta2.getDataAbertura());
+        var f3 = DataUtil.converterHora(conta2.getDataAbertura());        
+        System.out.println(f1);
+        System.out.println(f2);
+        System.out.println(f3);
     }
 }
