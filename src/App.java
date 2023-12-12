@@ -3,7 +3,7 @@ package src;
 import src.model.ContaBancaria;
 import src.model.ContaCorrente;
 import src.model.ContaPoupanca;
-
+import src.model.Movimentacao;
 import src.utils.DataUtil;
 public class App {
     public static void main(String[] args) {
@@ -38,11 +38,19 @@ public class App {
         System.out.println(f2);
         System.out.println(f3);*/
 
+        //classe estática não precisa estanciar
         var f1 = DataUtil.converterDateParaDataEHora(conta2.getDataAbertura());
         var f2 = DataUtil.converterDateParaData(conta2.getDataAbertura());
         var f3 = DataUtil.converterHora(conta2.getDataAbertura());        
         System.out.println(f1);
         System.out.println(f2);
         System.out.println(f3);
+
+        //Extrato bancario é composto por movimentações bancárias.
+        //Ter algo que possa ser a movimentação
+        //Ter uma lista de movimentação
+
+        Movimentacao movimentacao = new Movimentacao("Saque", 100.0);
+        System.out.println(movimentacao);
     }
 }
