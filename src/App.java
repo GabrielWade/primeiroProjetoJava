@@ -50,7 +50,13 @@ public class App {
         //Ter algo que possa ser a movimentação
         //Ter uma lista de movimentação
 
-        Movimentacao movimentacao = new Movimentacao("Saque", 100.0);
-        System.out.println(movimentacao);
+        //conta corrente
+        conta.imprimirExtrato();
+
+        System.out.println();
+        System.out.println();
+        
+        //conta poupança
+        conta2.imprimirExtrato();
     }
 }

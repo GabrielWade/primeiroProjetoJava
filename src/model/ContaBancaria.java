@@ -1,16 +1,18 @@
 package src.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 
 public abstract class ContaBancaria {
     //#region Atributos
-    private String agencia;
-    private String conta;
-    private Integer digito;
-    private Double saldo;
-    private Double VALOR_MINIMO_DEPOSITO = 10.0;
-    private Date dataAbertura;
+    protected String agencia;
+    protected String conta;
+    protected Integer digito;
+    protected Double saldo;
+    protected Double VALOR_MINIMO_DEPOSITO = 10.0;
+    protected Date dataAbertura;
+    protected ArrayList<Movimentacao> movimentacoes;
 
     //#endregion
 
@@ -21,6 +23,16 @@ public abstract class ContaBancaria {
         this.digito = digito;
         this.saldo = saldoInicial;
         this.dataAbertura = new Date();
+
+        // se não intaciar, vai dar uma excpetion de nullPointerExcpetion
+        this.movimentacoes = new ArrayList<Movimentacao>();
+
+        // criando minha primeira movimentação
+        Movimentacao movimentacao = new Movimentacao("Abertura de conta", saldoInicial);
+
+        // aqui estou salvando minha movimentação dentro da minha lista(aarray) de movimentações
+        // aqui estou inicializando meu extrato bancario
+        this.movimentacoes.add(movimentacao);
     }
     //#endregion
 
@@ -67,6 +79,10 @@ public abstract class ContaBancaria {
         }
 
         this.saldo += valor;
+
+        // aqui faço uma movimentação de deposito
+        Movimentacao movimentacao = new Movimentacao("Depósito", valor);
+        this.movimentacoes.add(movimentacao);
     }
 
     public double sacar(Double valor) {
@@ -75,6 +91,10 @@ public abstract class ContaBancaria {
         }
 
         this.saldo -= valor;
+
+        // aqui faço uma movimentação de saque
+        Movimentacao movimentacao = new Movimentacao("Retirada de valor", valor);
+        this.movimentacoes.add(movimentacao);
 
         return valor;
     }
@@ -85,6 +105,9 @@ public abstract class ContaBancaria {
 
         //deposita na conta destino
         contaDestino.depositar(valor);
+
     }
     //#endregion
+
+    public abstract void imprimirExtrato(); 
 }
